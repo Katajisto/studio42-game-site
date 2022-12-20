@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Studio42 game!</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+        margin-bottom: 50px;
+      }
+      .header {
+        width: 100%;
+        display: flex;
+        background-color: black;
+        color: white;
+        justify-content: center;
+      }
+      
+      #logo {
+        color: white;
+        text-decoration: none;
+      }
+    
+      #content {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 10px;
+        padding-right: 10px;
+        max-width: 800px;
+      }
+    
+      .game {
+        width: 100%;
+        background-color: #FAFAFA;
+        margin: 0px;
+        padding: 0px;
+        margin-bottom: 15px;
+        box-shadow: 2px 2px 3px #AAAAAA;
+        display: flex;
+      
+      }
+    
+      .gimg {
+        width: 200px;
+      }
+    
+      .gamecard {
+        padding-left: 10px;
+      }
+      
+      #game {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+      }
+      
+      #container {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding-top: 56.25%;
+      }
+      
+      #max-w {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px;
+        width: 70%;
+        max-width: 1920px;
+      }
+      
+      .footer {
+        margin-top: 40px;
+        align-text: center;
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
+      }
+      
+      .builds {
+        padding: 5px;
+        background-color: #EAEAEA;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  
+  <header class="header">
+    <h1><a id="logo" href="/">STUDIO 42</a></h1>
+  </header>
+
+  <div id="max-w">
+    <div id="container">
+      <iframe id="game" src="/games/{{ .Game }}/{{ .CurBuild }}/"></iframe> 
+    </div>
+    <div class="builds">
+      Older builds of the game:
+      {{ $game := .Game }}
+      {{ range .Builds }}
+        <a href="/play?id={{ $game }}&build={{.}}">Build {{.}}</a>
+      {{ end }}
+    </div>
+  </div>
+  <div>
+    <h2 class="footer">Copyright 2022 Studio 42 Oy</h2>
+  </div>
+</html>
+ 
