@@ -10,6 +10,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"sort"
 	"strconv"
 	"time"
@@ -138,6 +139,12 @@ func getBuildArr(id string) []string {
 }
 
 func uploadFile(w http.ResponseWriter, r *http.Request) {
+	// Check that the bearer token matches env variable
+	if r.Header.Get("Authorization") != "Bearer "+os.Getenv("UPLOAD_TOKEN") {
+		w.WriteHeader(http.StatusUnauthorized) // 401
+		return
+	}
+
 	game := r.URL.Query().Get("id")
 	if game == "" {
 		w.WriteHeader(http.StatusBadRequest)
