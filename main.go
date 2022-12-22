@@ -139,12 +139,10 @@ func getBuildArr(id string) []string {
 }
 
 func uploadFile(w http.ResponseWriter, r *http.Request) {
-	// Check that the request has an url parameter "auth" that
-	// matches the environment variable "AUTH"
 	auth := r.URL.Query().Get("auth")
 	if auth != os.Getenv("AUTH") {
 		w.WriteHeader(http.StatusUnauthorized)
-		fmt.Fprintf(w, "Unauthorized")
+		fmt.Fprintf(w, "Unauthorized")6
 		return
 	}
 
