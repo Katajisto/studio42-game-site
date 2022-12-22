@@ -142,6 +142,7 @@ func uploadFile(w http.ResponseWriter, r *http.Request) {
 	// Check that the bearer token matches env variable
 	if r.Header.Get("Authorization") != "Bearer "+os.Getenv("UPLOAD_TOKEN") {
 		w.WriteHeader(http.StatusUnauthorized) // 401
+		fmt.Fprintf(w, "Not allowed")
 		return
 	}
 
