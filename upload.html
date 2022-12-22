@@ -9,7 +9,7 @@
   <body>
     <form
       enctype="multipart/form-data"
-      action="/uploadFile?id={{.}}"
+      action="/uploadFile?id={{.Game}}&auth={{.Auth}}"
       method="post"
     >
       <input type="file" name="game" />

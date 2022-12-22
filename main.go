@@ -23,13 +23,19 @@ var uploadTemplate = template.Must(template.ParseFiles("upload.html"))
 
 // Display the named template
 func uploadPage(w http.ResponseWriter, r *http.Request) {
+	// get auth from url and pass it in a struct to the tempalate
+	auth := r.URL.Query().Get("auth")
+	
 	game := r.URL.Query().Get("id")
 	if game == "" {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	uploadTemplate.Execute(w, game)
+	uploadTemplate.Execute(w, struct {
+		Auth string
+		Game string
+	}{auth, game})
 }
 
 // Loads markdown data from pocketbase.
