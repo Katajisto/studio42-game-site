@@ -142,7 +142,7 @@ func uploadFile(w http.ResponseWriter, r *http.Request) {
 	auth := r.URL.Query().Get("auth")
 	if auth != os.Getenv("AUTH") {
 		w.WriteHeader(http.StatusUnauthorized)
-		fmt.Fprintf(w, "Unauthorized")6
+		fmt.Fprintf(w, "Unauthorized")
 		return
 	}
 
